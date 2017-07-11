@@ -3,6 +3,7 @@
 # [Noam Almog] skeletor.sh
 #              Automation of generating a new wix project
 # ------------------------------------------------------------------
+{ # this ensures the entire script is downloaded #
 NODE_VERSION=7.10.0
 
 function print_welcome_message() {
@@ -140,4 +141,6 @@ installYoIfNeeded
 print_divider
 
 print_title "Generate Wix Scala Server"
-yo scala-server
+yo generator-scala-server || echo WTF???
+
+} # this ensures the entire script is downloaded #
