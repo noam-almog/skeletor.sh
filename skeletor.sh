@@ -141,7 +141,7 @@ installYoIfNeeded
 print_divider
 
 print_title "Generate Wix Scala Server"
-yo scala-server || echo WTF???
+yo scala-server
 echo $?
 echo "skjhsdfkjhsdfhjksdfkjhfsd"
 } # this ensures the entire script is downloaded #
