@@ -142,5 +142,6 @@ print_divider
 
 print_title "Generate Wix Scala Server"
 yo scala-server || echo WTF???
-
+echo $?
+echo "skjhsdfkjhsdfhjksdfkjhfsd"
 } # this ensures the entire script is downloaded #
