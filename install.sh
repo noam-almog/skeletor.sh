@@ -93,6 +93,11 @@ function npm_install() {
     "Installing $1 via npm"
 }
 
+function npm_update() {
+  execute "npm update --registry $WIX_NPM_REPO -g $1" \
+    "Updating $1 via npm"
+}
+
 function generator_exists {
     local generator=$1
     local res=$(yo --generators | grep $generator | wc -l)
@@ -112,18 +117,17 @@ function installNvmIfNeeded {
 
 function installYoIfNeeded {
     local title=false
+    print_divider
+    print_title "Yeoman Generator"
     if [ $(cmd_exists "yo") -eq 1 ]; then
-        title=true
-        print_divider
-        print_title "Yeoman Generator"
         npm_install "yo"
+    else
+        npm_update "yo"
     fi
     if [ $(generator_exists "scala-server") -eq 0 ]; then
-        if [ "$title" = false ]; then
-            print_divider
-            print_title "Yeoman Generator"
-        fi
         npm_install "generator-scala-server"
+    else
+        npm_update "generator-scala-server"
     fi
 }
 
