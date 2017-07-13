@@ -127,6 +127,12 @@ function installYoIfNeeded {
     fi
 }
 
+function setupScriptEnv {
+    curl -s https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o "$HOME/skeletor.sh"
+    ln -s "$HOME/skeletor.sh" /usr/local/bin/skeletor
+    chmod +x /usr/local/bin/skeletor
+}
+
 print_welcome_message
 print_divider
 
@@ -141,5 +147,7 @@ installYoIfNeeded
 
 print_divider
 
-print_info "Done, run skeletor.sh to generate and update projects"
+setupScriptEnv
+
+print_info "Done, run skeletor to generate and update projects"
 } # this ensures the entire script is downloaded #
