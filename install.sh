@@ -129,7 +129,7 @@ function installYoIfNeeded {
 
 function setupScriptEnv {
     curl -s https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o "$HOME/skeletor.sh"
-    ln -s "$HOME/skeletor.sh" /usr/local/bin/skeletor
+    ln -sf "$HOME/skeletor.sh" /usr/local/bin/skeletor
     chmod +x /usr/local/bin/skeletor
 }
 
