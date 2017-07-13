@@ -107,7 +107,7 @@ function installNvmIfNeeded {
         execute "curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash" "Install nvm (using the official installer)"
     fi
     execute 'source "/Users/noamal/.nvm/nvm.sh"' "Loading NVM scripts"
-    execute 'nvm install $NODE_VERSION' "Installing Node $NODE_VERSION"
+    execute "nvm install $NODE_VERSION" "Installing Node $NODE_VERSION"
 }
 
 function installYoIfNeeded {
