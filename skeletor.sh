@@ -4,6 +4,7 @@
 #              Automation of generating a new wix project
 # ------------------------------------------------------------------
 NODE_VERSION=7.10.0
+WIX_NPM_REPO="http://npm.dev.wixpress.com"
 
 function print_welcome_message() {
 echo "          .                                                      ."
@@ -69,6 +70,16 @@ function print_divider() {
   printf "\n\n"
 }
 
+function error_reinstall {
+    print_error "Environment is not installed as expected, please rerun install."
+    print_divider
+    printf "\e[0;31m  $(tput bold; tput smul)Please reinstall by executing:$(tput sgr0)\n\n"
+    printf "\e[0;31m  curl -s https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/install.sh | bash\n"
+    printf "\n\e[0;31m  OR:\n\n"
+    printf "\e[0;31m  wget -q https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh\n\n\n"
+
+    exit 1
+}
 
 # --------------------------------------------- #
 # | Helper utils
@@ -87,7 +98,12 @@ function execute() {
 }
 
 function npm_install() {
-  execute "npm install -g $1" \
+  execute "npm install --registry $WIX_NPM_REPO -g $1" \
+    "Installing $1 via npm"
+}
+
+function npm_update() {
+  execute "npm update --registry $WIX_NPM_REPO -g $1" \
     "Installing $1 via npm"
 }
 
@@ -102,39 +118,25 @@ function installNvmIfNeeded {
     print_title "Node Environment"
 
     if ! [ -f "/Users/noamal/.nvm/nvm.sh" ]; then
-        execute "curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash" "Install nvm (using the official installer)"
+        error_reinstall
     fi
     execute 'source "/Users/noamal/.nvm/nvm.sh"' "Loading NVM scripts"
-    execute 'nvm install $NODE_VERSION' "Installing Node $NODE_VERSION"
+    execute "nvm install $NODE_VERSION" "Installing Node $NODE_VERSION"
 }
 
 function installYoIfNeeded {
-    local title=false
     if [ $(cmd_exists "yo") -eq 1 ]; then
-        title=true
-        print_divider
-        print_title "Yeoman Generator"
-        npm_install "yo"
+        error_reinstall
     fi
     if [ $(generator_exists "scala-server") -eq 0 ]; then
-        if [ "$title" = false ]; then
-            print_divider
-            print_title "Yeoman Generator"
-        fi
-        npm_install "generator-scala-server"
+        error_reinstall
     fi
 }
 
 print_welcome_message
 print_divider
 
-print_info "This script will do the following:
-    1. Install & setup nvm (if needed)
-    2. Install/update yeoman and node
-    3. Install or update server generators (if needed)\n"
-
 installNvmIfNeeded
-
 installYoIfNeeded
 
 print_divider
