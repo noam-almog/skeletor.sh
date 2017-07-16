@@ -71,13 +71,14 @@ function print_divider() {
 }
 
 function error_reinstall {
+    local step=$1
     print_error "Environment is not installed as expected, please rerun install."
     print_divider
     printf "\e[0;31m  $(tput bold; tput smul)Please reinstall by executing:$(tput sgr0)\n\n"
     printf "\e[0;31m  curl -s https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/install.sh | bash\n"
     printf "\n\e[0;31m  OR:\n\n"
     printf "\e[0;31m  wget -q https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh\n\n\n"
-
+    printf "Failed in $step"
     exit 1
 }
 
@@ -118,7 +119,7 @@ function installNvmIfNeeded {
     print_title "Node Environment"
 
     if ! [ -f "/Users/noamal/.nvm/nvm.sh" ]; then
-        error_reinstall
+        error_reinstall "nvm check"
     fi
     execute 'source "/Users/noamal/.nvm/nvm.sh"' "Loading NVM scripts"
     execute "nvm install $NODE_VERSION" "Installing Node $NODE_VERSION"
@@ -126,10 +127,10 @@ function installNvmIfNeeded {
 
 function installYoIfNeeded {
     if [ $(cmd_exists "yo") -eq 1 ]; then
-        error_reinstall
+        error_reinstall "yo check"
     fi
     if [ $(generator_exists "scala-server") -eq 0 ]; then
-        error_reinstall
+        error_reinstall "generator check"
     fi
 }
 
