@@ -3,7 +3,7 @@
 # [Noam Almog] skeletor.sh
 #              Automation of generating a new wix project
 # ------------------------------------------------------------------
-NODE_VERSION=7.10.0
+NODE_VERSION=6.11.0
 WIX_NPM_REPO="http://npm.dev.wixpress.com"
 
 function print_welcome_message() {
