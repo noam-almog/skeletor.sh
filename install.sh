@@ -137,8 +137,17 @@ function setupScriptEnv {
     chmod +x /usr/local/bin/skeletor
 }
 
+function checkRoot {
+    if [ "$EUID" -eq 0 ]; then
+        print_error "Script cannot run with root privileges, please rerun without sudo."
+        exit 1
+    fi
+}
+
 print_welcome_message
 print_divider
+
+checkRoot
 
 print_info "This script will do the following:
     1. Install & setup nvm (if needed)

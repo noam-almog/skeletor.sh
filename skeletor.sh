@@ -134,8 +134,18 @@ function installYoIfNeeded {
     fi
 }
 
+function checkRoot {
+    if [ "$EUID" -eq 0 ]; then
+        print_error "Script cannot run with root privileges, please rerun without sudo."
+        exit 1
+    fi
+}
+
+
 print_welcome_message
 print_divider
+
+checkRoot
 
 installNvmIfNeeded
 installYoIfNeeded
