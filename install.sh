@@ -132,9 +132,15 @@ function installYoIfNeeded {
 }
 
 function setupScriptEnv {
-    curl -s https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o "$HOME/skeletor.sh"
-    ln -sf "$HOME/skeletor.sh" /usr/local/bin/skeletor
+    # download skeletor script and install it on local env
+    curl --silent https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o "$HOME/bin/skeletor.sh"
+    ln -sf "$HOME/bin/skeletor.sh" /usr/local/bin/skeletor
     chmod +x /usr/local/bin/skeletor
+
+    # download git rest client script and install it on local env
+    curl --silent https://raw.githubusercontent.com/whiteinge/ok.sh/master/ok.sh -o "$HOME/bin/ok.sh"
+    ln -sf "$HOME/bin/ok.sh" /usr/local/bin/ok
+    chmod +x /usr/local/bin/ok
 }
 
 function checkRoot {
