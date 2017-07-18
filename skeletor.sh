@@ -79,7 +79,7 @@ function error_reinstall {
     printf "\n\e[0;31m  OR:\n\n"
     printf "\e[0;31m  wget -q https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh\n\n\n"
     printf "Failed in $step"
-    exit 1
+#    exit 1 # enable this once script is stable enough
 }
 
 # --------------------------------------------- #
