@@ -108,10 +108,10 @@ function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
 
-    if ! [ -f "/Users/noamal/.nvm/nvm.sh" ]; then
+    if ! [ -f "$HOME/.nvm/nvm.sh" ]; then
         execute "curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash" "Install nvm (using the official installer)"
     fi
-    execute 'source "/Users/noamal/.nvm/nvm.sh"' "Loading NVM scripts"
+    execute "source $HOME/.nvm/nvm.sh" "Loading NVM scripts"
     execute "nvm install $NODE_VERSION" "Installing Node $NODE_VERSION"
 }
 
