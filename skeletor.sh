@@ -4,7 +4,7 @@
 #              Automation of generating a new wix project
 # ------------------------------------------------------------------
 NODE_VERSION=6.11.0
-WIX_NPM_REPO="http://npm.dev.wixpress.com"
+WIX_NPM_REPO="https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos"
 
 function print_welcome_message() {
 echo "          .                                                      ."
