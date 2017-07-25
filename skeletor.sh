@@ -172,11 +172,11 @@ print_welcome_message
 print_divider
 
 checkRoot
+update_shell_scripts
 
 installNvmIfNeeded
 installYoIfNeeded
 update_generator
-update_shell_scripts
 
 print_divider
 
