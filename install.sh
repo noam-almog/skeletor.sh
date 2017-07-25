@@ -111,11 +111,7 @@ function installYoIfNeeded {
     local title=false
     print_divider
     print_title "Yeoman Generator"
-    if [ $(cmd_exists "yo") -eq 1 ]; then
-        npm_install "yo"
-    else
-        npm_update "yo"
-    fi
+    npm_install "yo@2"
     if [ $(generator_exists "scala-server") -eq 0 ]; then
         npm_install "generator-scala-server"
     else
