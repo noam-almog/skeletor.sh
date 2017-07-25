@@ -79,7 +79,7 @@ function error_reinstall {
     printf "\n\e[0;31m  OR:\n\n"
     printf "\e[0;31m  wget -q https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh\n\n\n"
     printf "Failed in $step"
-#    exit 1 # enable this once script is stable enough
+    exit # enable this once script is stable enough
 }
 
 # --------------------------------------------- #
@@ -114,6 +114,24 @@ function generator_exists {
     echo "$res"
 }
 
+function update_generator {
+    if [ $(generator_exists "scala-server") -eq 0 ]; then
+        error_reinstall "generator check"
+    fi
+    local latestVersion=$(npm view generator-scala-server version 2>/dev/null)
+    local installedVersion=$(npm ls -g --depth=0 generator-scala-server 2>/dev/null | grep scala | cut -d \@ -f 2)
+
+    if [ $installedVersion != $latestVersion ];
+    then
+        print_info "Detected a newer version of generator [$latestVersion], upgrading."
+        npm_update "generator-scala-server"
+    fi
+    if [ $installedVersion = $latestVersion ];
+    then
+        print_info "Generator is installed properly and updated to latest [$latestVersion]"
+    fi
+}
+
 function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
@@ -129,9 +147,6 @@ function installYoIfNeeded {
     if [ $(cmd_exists "yo") -eq 1 ]; then
         error_reinstall "yo check"
     fi
-    if [ $(generator_exists "scala-server") -eq 0 ]; then
-        error_reinstall "generator check"
-    fi
 }
 
 function checkRoot {
@@ -141,7 +156,6 @@ function checkRoot {
     fi
 }
 
-
 print_welcome_message
 print_divider
 
@@ -149,6 +163,7 @@ checkRoot
 
 installNvmIfNeeded
 installYoIfNeeded
+update_generator
 
 print_divider
 
