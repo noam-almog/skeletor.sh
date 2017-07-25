@@ -8,27 +8,20 @@ NODE_VERSION=6.11.0
 WIX_NPM_REPO="https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos"
 
 function print_welcome_message() {
-echo "          .                                                      ."
-echo "        .n                   .                 .                  n."
-echo "  .   .dP                  dP                   9b                 9b.    ."
-echo " 4    qXb         .       dX                     Xb       .        dXp     t"
-echo "dX.    9Xb      .dXb    __                         __    dXb.     dXP     .Xb"
-echo "9XXb._       _.dXXXXb dXXXXbo.                 .odXXXXb dXXXXb._       _.dXXP"
-echo " 9XXXXXXXXXXXXXXXXXXXVXXXXXXXXOo.           .oOXXXXXXXXVXXXXXXXXXXXXXXXXXXXP"
-echo "  \`9XXXXXXXXXXXXXXXXXXXXX'~   ~\`OOO8b   d8OOO'~   ~\`XXXXXXXXXXXXXXXXXXXXXP'"
-echo "    \`9XXXXXXXXXXXP' \`9XX'   DIE    \`98v8P'  HUMAN   \`XXP' \`9XXXXXXXXXXXP'"
-echo "        ~~~~~~~       9X.          .db|db.          .XP       ~~~~~~~"
-echo "                        )b.  .dbo.dP'\`v'\`9b.odb.  .dX(        ██████  ██ ▄█▀▓█████  ██▓    ▓█████▄▄▄█████▓ ▒█████   ██▀███"
-echo "                      ,dXXXXXXXXXXXb     dXXXXXXXXXXXb.     ▒██    ▒  ██▄█▒ ▓█   ▀ ▓██▒    ▓█   ▀▓  ██▒ ▓▒▒██▒  ██▒▓██ ▒ ██▒"
-echo "                     dXXXXXXXXXXXP'   .   \`9XXXXXXXXXXXb    ░ ▓██▄   ▓███▄░ ▒███   ▒██░    ▒███  ▒ ▓██░ ▒░▒██░  ██▒▓██ ░▄█ ▒"
-echo "                    dXXXXXXXXXXXXb   d|b   dXXXXXXXXXXXXb     ▒   ██▒▓██ █▄ ▒▓█  ▄ ▒██░    ▒▓█  ▄░ ▓██▓ ░ ▒██   ██░▒██▀▀█▄"
-echo "                    9XXb'   \`XXXXXb.dX|Xb.dXXXXX'   \`dXXP   ▒██████▒▒▒██▒ █▄░▒████▒░██████▒░▒████▒ ▒██▒ ░ ░ ████▓▒░░██▓ ▒██▒"
-echo "                     \`'      9XXXXXX(   )XXXXXXP      \`'    ▒ ▒▓▒ ▒ ░▒ ▒▒ ▓▒░░ ▒░ ░░ ▒░▓  ░░░ ▒░ ░ ▒ ░░   ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░"
-echo "                              XXXX X.\`v'.X XXXX             ░ ░▒  ░ ░░ ░▒ ▒░ ░ ░  ░░ ░ ▒  ░ ░ ░  ░   ░      ░ ▒ ▒░   ░▒ ░ ▒░"
-echo "                              XP^X'\`b   d'\`X^XX             ░  ░  ░  ░ ░░ ░    ░     ░ ░      ░    ░      ░ ░ ░ ▒    ░░   ░"
-echo "                              X. 9  \`   '  P )X                   ░  ░  ░      ░  ░    ░  ░   ░  ░            ░ ░     ░"
-echo "                              \`b  \`       '  d'"
-printf "                               \`             '                                                                by \e[0;33mNoam Almog\n\e[0m"
+    echo "       ...               ..                       ..                 s"
+    echo "   .x888888hx    : < .z@8\"\`                 x .d88\"                 :8"
+    echo "  d88888888888hxx   !@88E                    5888R                 .88           u.      .u    ."
+    echo " 8\" ... \`\"*8888%\`   '888E   u         .u     '888R        .u      :888ooo  ...ue888b   .d88B :@8c"
+    echo "!  \"   \` .xnxx.      888E u@8NL    ud8888.    888R     ud8888.  -*8888888  888R Y888r =\"8888f8888r"
+    echo "X X   .H8888888%:    888E\`\"88*\"  :888'8888.   888R   :888'8888.   8888     888R I888>   4888>'88\""
+    echo "X 'hn8888888*\"   >   888E .dN.   d888 '88%\"   888R   d888 '88%\"   8888     888R I888>   4888> '"
+    echo "X: \`*88888%\`     !   888E~8888   8888.+\"      888R   8888.+\"      8888     888R I888>   4888>"
+    echo "'8h.. \`\`     ..x8>   888E '888&  8888L        888R   8888L       .8888Lu= u8888cJ888   .d888L .+"
+    echo " \`88888888888888f    888E  9888. '8888c. .+  .888B . '8888c. .+  ^%888*    \"*888*P\"    ^\"8888*\""
+    echo "  '%8888888888*\"   '\"888*\" 4888\"  \"88888%    ^*888%   \"88888%      'Y\"       'Y\"          \"Y\""
+    echo "     ^\"****\"\"\`        \"\"    \"\"      \"YP'       \"%       \"YP'"
+    printf "                                                                                    by \e[0;33mNoam Almog\n\e[0m"
+    exit
 }
 
 # --------------------------------------------- #
@@ -157,8 +150,8 @@ checkRoot
 
 print_info "This script will do the following:
     1. Install & setup nvm (if needed)
-    2. Install/update yeoman and node
-    3. Install or update server generators (if needed)\n"
+    2. Install/update NodeJS and Yeoman
+    3. Install or update server generators\n"
 
 installNvmIfNeeded
 
@@ -168,5 +161,5 @@ print_divider
 
 setupScriptEnv
 
-print_info "Done, run skeletor to generate and update projects"
+print_info "Done, run \`skeletor\` to generate your projects."
 } # this ensures the entire script is downloaded #
