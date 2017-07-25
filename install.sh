@@ -135,6 +135,11 @@ function setupScriptEnv {
     chmod +x /usr/local/bin/ok
 }
 
+function installJQ {
+  execute "brew install jq" \
+    "Installing \`jq\` via brew"
+}
+
 function checkRoot {
     if [ "$EUID" -eq 0 ]; then
         print_error "Script cannot run with root privileges, please rerun without sudo."
@@ -150,11 +155,15 @@ checkRoot
 print_info "This script will do the following:
     1. Install & setup nvm (if needed)
     2. Install/update NodeJS and Yeoman
-    3. Install or update server generators\n"
+    3. Install or update server generators
+    4. Install jq\n"
+
 
 installNvmIfNeeded
 
 installYoIfNeeded
+
+installJQ
 
 print_divider
 
