@@ -99,12 +99,12 @@ function execute() {
 }
 
 function npm_install() {
-  execute "npm install --registry $WIX_NPM_REPO -g $1" \
+  execute "npm install --registry=$WIX_NPM_REPO -g $1" \
     "Installing $1 via npm"
 }
 
 function npm_update() {
-  execute "npm update --registry $WIX_NPM_REPO -g $1" \
+  execute "npm update --registry=$WIX_NPM_REPO -g $1" \
     "Installing $1 via npm"
 }
 
