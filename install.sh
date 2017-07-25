@@ -126,7 +126,7 @@ function installYoIfNeeded {
 
 function setupScriptEnv {
     # download skeletor script and install it on local env
-    curl --silent https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o "$HOME/bin/skeletor.sh"
+    curl --silent -H 'Cache-Control: no-cache'  https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o "$HOME/bin/skeletor.sh"
     ln -sf "$HOME/bin/skeletor.sh" /usr/local/bin/skeletor
     chmod +x /usr/local/bin/skeletor
 
