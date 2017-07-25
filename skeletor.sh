@@ -132,6 +132,11 @@ function update_generator {
     fi
 }
 
+function update_shell_scripts {
+    curl --silent -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o "$HOME/bin/skeletor.sh"
+    curl --silent https://raw.githubusercontent.com/whiteinge/ok.sh/master/ok.sh -o "$HOME/bin/ok.sh"
+}
+
 function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
@@ -164,6 +169,7 @@ checkRoot
 installNvmIfNeeded
 installYoIfNeeded
 update_generator
+update_shell_scripts
 
 print_divider
 
