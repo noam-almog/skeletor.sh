@@ -77,8 +77,8 @@ function error_reinstall {
     printf "\e[0;31m  $(tput bold; tput smul)Please reinstall by executing:$(tput sgr0)\n\n"
     printf "\e[0;31m  curl -s https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/install.sh | bash\n"
     printf "\n\e[0;31m  OR:\n\n"
-    printf "\e[0;31m  wget -q https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh\n\n\n"
-    printf "Failed in $step"
+    printf "\e[0;31m  wget -q https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/install.sh | bash\n"
+    printf "\n\nFailed in $step"
     exit # enable this once script is stable enough
 }
 
