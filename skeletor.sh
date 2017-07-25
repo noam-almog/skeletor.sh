@@ -116,19 +116,26 @@ function generator_exists {
 
 function update_generator {
     if [ $(generator_exists "scala-server") -eq 0 ]; then
-        error_reinstall "generator check"
+        npm_install "generator-scala-server"
+        return
     fi
     local latestVersion=$(npm view generator-scala-server version 2>/dev/null)
-    local installedVersion=$(npm ls -g --depth=0 generator-scala-server 2>/dev/null | grep scala | cut -d \@ -f 2)
+    local installedVersion=$(npm ls -g --depth=0 generator-scala-server 2>/dev/null | grep scala | cut -d \@ -f 2 | awk '{$1=$1};1')
 
-    if [ $installedVersion != $latestVersion ];
+    local devVersion=($installedVersion)
+    if [ "$devVersion" = "0.0.0" ]; then
+        print_info "Developer environment detected."
+        return
+    fi
+
+    if [ "$installedVersion" != "$latestVersion" ];
     then
-        print_info "Detected a newer version of generator [$latestVersion], upgrading."
+        print_info "Detected a newer version of generator [$installedVersion --> $latestVersion], upgrading."
         npm_update "generator-scala-server"
     fi
-    if [ $installedVersion = $latestVersion ];
+    if [ "$installedVersion" = "$latestVersion" ];
     then
-        print_info "Generator is installed properly and updated to latest [$latestVersion]"
+        print_info "Generator is installed properly and updated to latest [$latestVersion]."
     fi
 }
 
