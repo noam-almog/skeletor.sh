@@ -119,8 +119,8 @@ function update_generator {
         npm_install "generator-scala-server"
         return
     fi
-    local latestVersion=$(npm view generator-scala-server version 2>/dev/null)
-    local installedVersion=$(npm ls -g --depth=0 generator-scala-server 2>/dev/null | grep scala | cut -d \@ -f 2 | awk '{$1=$1};1')
+    local latestVersion=$(npm view --registry=$WIX_NPM_REPO generator-scala-server version 2>/dev/null)
+    local installedVersion=$(npm ls -g --registry=$WIX_NPM_REPO --depth=0 generator-scala-server 2>/dev/null | grep scala | cut -d \@ -f 2 | awk '{$1=$1};1')
 
     local devVersion=($installedVersion)
     if [ "$devVersion" = "0.0.0" ]; then
