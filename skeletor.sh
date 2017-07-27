@@ -152,11 +152,10 @@ function update_shell_scripts {
 function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
-
-    if ! [ -f "$HOME/.nvm/nvm.sh" ]; then
+    if ! [ -s "$NVM_DIR/nvm.sh" ]; then
         error_reinstall "nvm check"
     fi
-    execute "source $HOME/.nvm/nvm.sh" "Loading NVM scripts"
+    execute "source $NVM_DIR/nvm.sh" "Loading NVM scripts"
     execute "nvm install $NODE_VERSION" "Installing Node $NODE_VERSION"
 }
 

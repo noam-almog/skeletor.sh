@@ -101,11 +101,10 @@ function generator_exists {
 function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
-
-    if ! [ -f "$HOME/.nvm/nvm.sh" ]; then
-        execute "curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash" "Install nvm (using the official installer)"
+    if ! [ -s "$NVM_DIR/nvm.sh" ]; then
+        error_reinstall "nvm check"
     fi
-    execute "source $HOME/.nvm/nvm.sh" "Loading NVM scripts"
+    execute "source $NVM_DIR/nvm.sh" "Loading NVM scripts"
     execute "nvm install $NODE_VERSION" "Installing Node $NODE_VERSION"
 }
 
