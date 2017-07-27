@@ -93,7 +93,6 @@ function cmd_exists() {
 
 function execute() {
     local cmd=$1
-    local cmd="dkjhdfskjhfsdkjsdf"
     local description=$2
     print_running "${description}"
     eval $cmd &> /dev/null
