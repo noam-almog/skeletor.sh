@@ -98,10 +98,10 @@ function generator_exists {
 function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
-    if ! [ -s "$NVM_DIR/nvm.sh" ]; then
-        error_reinstall "nvm check"
+    if ! [ -s "$HOME_DIR/.nvm/nvm.sh" ]; then
+        print_error "Unable to locate $HOME_DIR/.nvm/nvm.sh"
     fi
-    execute "source $NVM_DIR/nvm.sh" "Loading NVM scripts"
+    execute "source $HOME_DIR/.nvm/nvm.sh" "Loading NVM scripts"
     execute "nvm install \"$NODE_VERSION\"" "Using NodeJS $NODE_VERSION"
 }
 
