@@ -145,8 +145,8 @@ function update_generator {
 }
 
 function update_shell_scripts {
-    curl --silent -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o "$HOME/bin/skeletor.sh"
-    curl --silent https://raw.githubusercontent.com/whiteinge/ok.sh/master/ok.sh -o "$HOME/bin/ok.sh"
+    [ -d "$HOME/bin" ] || mkdir "$HOME/bin"
+    execute "curl --silent -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o $HOME/bin/skeletor.sh" "Updating Skeletor script"
 }
 
 function installNvmIfNeeded {
@@ -175,6 +175,7 @@ function checkRoot {
 print_welcome_message
 print_divider
 
+print_title "Skeletor Environment"
 checkRoot
 update_shell_scripts
 

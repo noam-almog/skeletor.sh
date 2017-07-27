@@ -118,13 +118,15 @@ function installYoIfNeeded {
 }
 
 function setupScriptEnv {
+    [ -d "$HOME/bin" ] || mkdir "$HOME/bin"
+
     # download skeletor script and install it on local env
-    curl --silent -H 'Cache-Control: no-cache'  https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o "$HOME/bin/skeletor.sh"
+    execute "curl --silent -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/noam-almog/skeletor.sh/master/skeletor.sh -o $HOME/bin/skeletor.sh" "Installing Skeletor script"
     ln -sf "$HOME/bin/skeletor.sh" /usr/local/bin/skeletor
     chmod +x /usr/local/bin/skeletor
 
     # download git rest client script and install it on local env
-    curl --silent https://raw.githubusercontent.com/whiteinge/ok.sh/master/ok.sh -o "$HOME/bin/ok.sh"
+    execute "curl --silent https://raw.githubusercontent.com/whiteinge/ok.sh/master/ok.sh -o $HOME/bin/ok.sh" "Installing Skeletor script dependencies"
     ln -sf "$HOME/bin/ok.sh" /usr/local/bin/ok
     chmod +x /usr/local/bin/ok
 }
