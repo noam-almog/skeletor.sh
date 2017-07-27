@@ -52,11 +52,12 @@ function print_success() {
 }
 
 function print_result() {
-  [ $1 -eq 0 ] \
-    && print_success "$2" \
-    || print_error "$2"
-
-  return $1
+    local returnCode=$1
+    local cmd=$2
+  [ $returnCode -eq 0 ] \
+    && print_success "$cmd" \
+    || print_error "$cmd"
+  return $returnCode
 }
 
 function print_divider() {
@@ -76,8 +77,9 @@ function cmd_exists() {
 function execute() {
   print_running "${2}"
   eval "$1" &> /dev/null
+  local retCode=$?
   echo -en '\r'
-  print_result $? "${2:-$1}"
+  print_result $retCode "${2:-$1}"
 }
 
 function npm_install() {

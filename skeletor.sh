@@ -92,20 +92,26 @@ function cmd_exists() {
 }
 
 function execute() {
-  print_running "${2}"
-  eval "$1" &> /dev/null
-  echo -en '\r'
-  print_result $? "${2:-$1}"
+    local cmd=$1
+    local cmd="dkjhdfskjhfsdkjsdf"
+    local description=$2
+    print_running "${description}"
+    eval $cmd &> /dev/null
+    local exitCode=$?
+    echo -en '\r'
+    print_result $exitCode "${2:-$1}"
 }
 
 function npm_install() {
-  execute "npm install --registry=$WIX_NPM_REPO -g $1" \
-    "Installing $1 via npm"
+    local package=$1
+    execute "npm install --registry=$WIX_NPM_REPO -g $package" \
+            "Installing $package via npm"
 }
 
 function npm_update() {
-  execute "npm update --registry=$WIX_NPM_REPO -g $1" \
-    "Installing $1 via npm"
+    local package=$1
+    execute "npm update --registry=$WIX_NPM_REPO -g $package" \
+            "Installing $package via npm"
 }
 
 function generator_exists {
