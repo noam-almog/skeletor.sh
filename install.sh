@@ -20,13 +20,12 @@ function print_welcome_message() {
     echo " \`88888888888888f    888E  9888. '8888c. .+  .888B . '8888c. .+  ^%888*    \"*888*P\"    ^\"8888*\""
     echo "  '%8888888888*\"   '\"888*\" 4888\"  \"88888%    ^*888%   \"88888%      'Y\"       'Y\"          \"Y\""
     echo "     ^\"****\"\"\`        \"\"    \"\"      \"YP'       \"%       \"YP'"
-    printf "                                                                                    by \e[0;33mNoam Almog\n\e[0m"
+    printf "                                                                                    by \e[1;33mNoam Almog\n\e[0m"
 }
 
 # --------------------------------------------- #
 # | Messages
 # --------------------------------------------- #
-
 function print_title() {
   printf "\e[1;37m $(tput bold; tput smul)$1$(tput sgr0)\n\e[0m"
 }
@@ -40,7 +39,7 @@ function print_question() {
 }
 
 function print_running() {
-  printf "\e[0;34m  [.] $1\e[0m"
+  printf "\e[1;32m  [.] $1\e[0m"
 }
 
 function print_info() {
@@ -54,10 +53,8 @@ function print_success() {
 function print_result() {
     local returnCode=$1
     local cmd=$2
-  [ $returnCode -eq 0 ] \
-    && print_success "$cmd" \
-    || print_error "$cmd"
-  return $returnCode
+    [ $returnCode -eq 0 ] && print_success "$cmd" || print_error "$cmd"
+    echo $returnCode
 }
 
 function print_divider() {
@@ -105,7 +102,7 @@ function installNvmIfNeeded {
         error_reinstall "nvm check"
     fi
     execute "source $NVM_DIR/nvm.sh" "Loading NVM scripts"
-    execute "nvm install $NODE_VERSION" "Installing Node $NODE_VERSION"
+    execute "nvm install \"$NODE_VERSION\"" "Using NodeJS $NODE_VERSION"
 }
 
 function installYoIfNeeded {

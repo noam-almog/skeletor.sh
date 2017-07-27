@@ -27,7 +27,7 @@ echo "                              XXXX X.\`v'.X XXXX             ░ ░▒  �
 echo "                              XP^X'\`b   d'\`X^XX             ░  ░  ░  ░ ░░ ░    ░     ░ ░      ░    ░      ░ ░ ░ ▒    ░░   ░"
 echo "                              X. 9  \`   '  P )X                   ░  ░  ░      ░  ░    ░  ░   ░  ░            ░ ░     ░"
 echo "                              \`b  \`       '  d'"
-printf "                               \`             '                                                                by \e[0;33mNoam Almog\n\e[0m"
+printf "                               \`             '                                                                by \e[1;33mNoam Almog\n\e[0m"
 }
 
 # --------------------------------------------- #
@@ -47,7 +47,7 @@ function print_question() {
 }
 
 function print_running() {
-  printf "\e[0;34m  [.] $1\e[0m"
+  printf "\e[1;32m  [.] $1\e[0m"
 }
 
 function print_info() {
@@ -156,7 +156,7 @@ function installNvmIfNeeded {
         error_reinstall "nvm check"
     fi
     execute "source $NVM_DIR/nvm.sh" "Loading NVM scripts"
-    execute "nvm install $NODE_VERSION" "Installing Node $NODE_VERSION"
+    execute "nvm install \"$NODE_VERSION\"" "Using NodeJS $NODE_VERSION"
 }
 
 function installYoIfNeeded {
