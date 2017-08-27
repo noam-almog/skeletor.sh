@@ -54,7 +54,7 @@ function print_result() {
     local returnCode=$1
     local cmd=$2
     [ $returnCode -eq 0 ] && print_success "$cmd" || print_error "$cmd"
-    echo $returnCode
+    return $returnCode
 }
 
 function print_divider() {
@@ -68,7 +68,7 @@ function print_divider() {
 
 function cmd_exists() {
   command -v "$1" &> /dev/null
-  echo "$?"
+  return "$?"
 }
 
 function execute() {
@@ -92,7 +92,7 @@ function npm_update() {
 function generator_exists {
     local generator=$1
     local res=$(yo --generators | grep $generator | wc -l)
-    echo $res
+    return "$res"
 }
 
 function installNVM {
@@ -155,9 +155,9 @@ checkRoot
 
 print_info "This script will do the following:
     1. Install & setup nvm (if needed)
-    2. Install/update NodeJS and Yeoman
-    3. Install or update server generators
-    4. Install jq\n"
+    2. Install/update NodeJS (6.11.0) and Yeoman
+    3. Install or update Skeletor generators
+    4. Install jq (needed to analyze json responses)\n"
 
 
 installNvmIfNeeded

@@ -88,7 +88,7 @@ function error_reinstall {
 
 function cmd_exists() {
   command -v "$1" &> /dev/null
-  echo "$?"
+  return "$?"
 }
 
 function execute() {
@@ -116,7 +116,7 @@ function npm_update() {
 function generator_exists {
     local generator=$1
     local res=$(yo --generators | grep $generator | wc -l)
-    echo $res
+    return "$res"
 }
 
 function update_generator {
