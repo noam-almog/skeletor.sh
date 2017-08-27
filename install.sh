@@ -92,14 +92,19 @@ function npm_update() {
 function generator_exists {
     local generator=$1
     local res=$(yo --generators | grep $generator | wc -l)
-    echo "$res"
+    echo $res
+}
+
+function installNVM {
+    execute "curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash" "Installing nvm script"
 }
 
 function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
     if ! [ -s "$HOME/.nvm/nvm.sh" ]; then
-        print_error "Unable to locate $HOME/.nvm/nvm.sh"
+        print_info "Unable to locate nvm"
+        installNVM
     fi
     execute "source $HOME/.nvm/nvm.sh" "Loading NVM scripts"
     execute "nvm install \"$NODE_VERSION\"" "Using NodeJS $NODE_VERSION"

@@ -116,7 +116,7 @@ function npm_update() {
 function generator_exists {
     local generator=$1
     local res=$(yo --generators | grep $generator | wc -l)
-    echo "$res"
+    echo $res
 }
 
 function update_generator {
