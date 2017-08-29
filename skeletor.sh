@@ -87,8 +87,10 @@ function error_reinstall {
 # --------------------------------------------- #
 
 function cmd_exists() {
-  command -v "$1" &> /dev/null
-  return "$?"
+    if ! cmd_loc="$(type -p "$1")" || [ -z "$cmd_loc" ]; then
+        return 0 # command NOT found
+    fi
+    return 1 # command found
 }
 
 function execute() {
@@ -116,7 +118,7 @@ function npm_update() {
 function generator_exists {
     local generator=$1
     local res=$(yo --generators | grep $generator | wc -l)
-    return "$res"
+    echo "$res"
 }
 
 function update_generator {
@@ -160,7 +162,8 @@ function installNvmIfNeeded {
 }
 
 function installYoIfNeeded {
-    if [ $(cmd_exists "yo") -eq 1 ]; then
+    cmd_exists "yo"
+    if [ $? -eq 0 ]; then
         error_reinstall "yo check"
     fi
 }
