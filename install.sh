@@ -103,11 +103,12 @@ function installNVM {
 function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
-    if ! [ -s "$HOME/.nvm/nvm.sh" ]; then
+    cmd_exists "nvm"
+    if [ $? -eq 0 ]; then
         print_info "Unable to locate nvm"
         installNVM
+        execute ". $HOME/.nvm/nvm.sh" "Loading NVM scripts"
     fi
-    execute "source $HOME/.nvm/nvm.sh" "Loading NVM scripts"
     execute "nvm install \"$NODE_VERSION\"" "Using NodeJS $NODE_VERSION"
 }
 
