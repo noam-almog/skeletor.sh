@@ -154,11 +154,10 @@ function update_shell_scripts {
 function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
-    cmd_exists "nvm"
-    if [ $? -eq 0 ]; then
-        print_error "Unable to locate $HOME/.nvm/nvm.sh"
-        execute "source $HOME/.nvm/nvm.sh" "Loading NVM scripts"
+    if [ ! -f "$HOME/.nvm/nvm.sh" ]; then
+        print_error "Unable to locate nvm command"
     fi
+    execute "source $HOME/.nvm/nvm.sh" "Loading NVM scripts"
     execute "nvm install \"$NODE_VERSION\"" "Using NodeJS $NODE_VERSION"
 }
 

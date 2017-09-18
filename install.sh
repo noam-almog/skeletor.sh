@@ -97,18 +97,17 @@ function generator_exists {
 }
 
 function installNVM {
-    execute "curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash" "Installing nvm script"
+    execute "curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash" "Installing nvm script"
 }
 
 function installNvmIfNeeded {
     print_divider
     print_title "Node Environment"
-    cmd_exists "nvm"
-    if [ $? -eq 0 ]; then
+    if [ ! -f "$HOME/.nvm/nvm.sh" ]; then
         print_info "Unable to locate nvm"
         installNVM
-        execute ". $HOME/.nvm/nvm.sh" "Loading NVM scripts"
     fi
+    execute ". $HOME/.nvm/nvm.sh" "Loading NVM scripts"
     execute "nvm install \"$NODE_VERSION\"" "Using NodeJS $NODE_VERSION"
 }
 
