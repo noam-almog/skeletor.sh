@@ -156,7 +156,7 @@ checkRoot
 
 print_info "This script will do the following:
     1. Install & setup nvm (if needed)
-    2. Install/update NodeJS (6.11.0) and Yeoman
+    2. Install/update NodeJS ($NODE_VERSION) and Yeoman
     3. Install or update Skeletor generators
     4. Install jq (needed to analyze json responses)\n"
 
