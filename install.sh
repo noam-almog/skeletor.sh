@@ -4,7 +4,7 @@
 #              Automation of generating a new wix project
 # ------------------------------------------------------------------
 { # this ensures the entire script is downloaded #
-NODE_VERSION=6.11.0
+NODE_VERSION=8.9.1
 WIX_NPM_REPO="https://repo.dev.wixpress.com/artifactory/api/npm/npm-repos"
 
 function print_welcome_message() {
