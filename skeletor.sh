@@ -111,7 +111,8 @@ function npm_install() {
 
 function npm_update() {
     local package=$1
-    execute "npm update --registry=$WIX_NPM_REPO -g $package" \
+#    execute "npm update --registry=$WIX_NPM_REPO -g $package" \
+    execute "npm install --registry=$WIX_NPM_REPO -g $1" \
             "Installing $package via npm"
 }
 
