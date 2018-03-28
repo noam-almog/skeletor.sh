@@ -140,6 +140,7 @@ function update_generator {
     then
         print_info "Detected a newer version of generator [$installedVersion --> $latestVersion], upgrading."
         npm_update "generator-scala-server"
+        print_info "Generator is installed properly and updated to latest [$latestVersion]."
     fi
     if [ "$installedVersion" = "$latestVersion" ];
     then
